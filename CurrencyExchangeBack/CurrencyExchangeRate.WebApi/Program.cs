@@ -1,10 +1,10 @@
+using CurrencyExchangeRate.Domain.Repositories.Interfaces;
+using CurrencyExchangeRate.Infrastructure.Repositories.Common;
 using CurrencyExchangeRate.WebApi.Core;
-using CurrencyExchangeRate.WebApi.Infrastructure.Contexts;
-using CurrencyExchangeRate.WebApi.Infrastructure.Mappings;
-using CurrencyExchangeRate.WebApi.Infrastructure.Repositories.Common;
-using CurrencyExchangeRate.WebApi.Infrastructure.Repositories.Interfaces;
+using CurrencyExchangeRate.WebApi.Infrastructure.Extensions;
+using CurrencyExchangeRate.WebApi.Mappings;
+using CurrencyExchangeRate.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -22,13 +22,12 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddControllers().AddNewtonsoftJson();
+builder.Services.AddScoped<ICurrencyExchangeRateService, CurrencyExchangeRateService>();
 builder.Services.AddScoped<ICurrencyExchangeRateRepository, CurrencyExchangeRateRepository>();
 builder.Services.AddAutoMapper(typeof(CurrencyExchangeRateProfile));
-builder.Services.AddDbContext<CurrencyDbContext>(
-    options => options.UseMySQL(
-        builder.Configuration.GetConnectionString("CurrencyExchangeRateDatabase"))
-);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddAutoMapper(typeof(PagingDtoProfile));
+builder.Services.AddAutoMapper(typeof(CurrencyDtoProfile));
+builder.Services.AddDb(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
     {

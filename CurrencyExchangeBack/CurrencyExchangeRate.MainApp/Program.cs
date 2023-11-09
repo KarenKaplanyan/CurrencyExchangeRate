@@ -1,8 +1,7 @@
-﻿using CurrencyExchangeRate.MainApp.Infrastructure.Contexts;
-using CurrencyExchangeRate.MainApp.Infrastructure.Repositories.Common;
-using CurrencyExchangeRate.MainApp.Infrastructure.Repositories.Interfaces;
-using CurrencyExchangeRate.MainApp.Infrastructure.Services;
-using Microsoft.EntityFrameworkCore;
+﻿using CurrencyExchangeRate.Domain.Repositories.Interfaces;
+using CurrencyExchangeRate.Infrastructure.Repositories.Common;
+using CurrencyExchangeRate.MainApp.Services;
+using CurrencyExchangeRate.WebApi.Infrastructure.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,14 +13,22 @@ IConfiguration config = new ConfigurationBuilder()
     .Build();
 
 var serviceProvider = new ServiceCollection()
-    .AddDbContext<CurrencyDbContext>(options => 
-        options.UseMySQL(config.GetConnectionString("CurrencyExchangeRateDatabase")))
+    .AddDb(config)
     .AddSingleton<IXmlService, XmlService>()
+    .AddSingleton<IAddToDbService, AddToDbService>()
     .AddSingleton<ICurrencyExchangeRateRepository, CurrencyExchangeRateRepository>()
     .BuildServiceProvider();
 
-var currencyRepository = serviceProvider.GetService<ICurrencyExchangeRateRepository>();
-if (currencyRepository != null) await currencyRepository.AddDataToDbAsync(CancellationToken.None);
+var xmlService = serviceProvider.GetService<IXmlService>();
+var addToDbService = serviceProvider.GetService<IAddToDbService>();
+
+if (xmlService != null && addToDbService != null)
+{
+    var cursValues = await xmlService.GetDataFromCbr(CancellationToken.None);
+    await addToDbService.AddDataToDbAsync(cursValues, CancellationToken.None);
+}
+
+
 
 Console.WriteLine("Окончание обновления справочника валют....");
 Console.ReadKey();

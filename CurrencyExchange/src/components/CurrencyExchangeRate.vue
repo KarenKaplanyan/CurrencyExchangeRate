@@ -76,16 +76,12 @@
                             <thead>
                                 <tr>
                                     <th class="text-left">Наименование валюты</th>
-                                    <th class="text-left">Буквенный код</th>
-                                    <th class="text-left">Цифровой код</th>
                                     <th class="text-left">Курс</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="text-left">{{ currencyDetails.name }}</td>
-                                    <td class="text-left">{{ currencyDetails.charCode }}</td>
-                                    <td class="text-left">{{ currencyDetails.numCode }}</td>
                                     <td class="text-left">{{ currencyDetails.rate }}</td>
                                 </tr>
                             </tbody>

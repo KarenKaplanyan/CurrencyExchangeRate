@@ -7,15 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="12.0.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.24" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.24" />
-        <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.5" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\CurrencyExchangeRate.WebApi.Core\CurrencyExchangeRate.WebApi.Core.csproj" />
-      <ProjectReference Include="..\CurrencyExchangeRate.WebApi.Infrastructure\CurrencyExchangeRate.WebApi.Infrastructure.csproj" />
+      <ProjectReference Include="..\CurrencyExchangeRate.Infrastructure\CurrencyExchangeRate.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

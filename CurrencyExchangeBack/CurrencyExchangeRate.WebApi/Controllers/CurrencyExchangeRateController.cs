@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CurrencyExchangeRate.WebApi.Controllers;
 
 [ApiController]
+[Authorize(Roles = "user,admin")]
 [Route("[controller]")]
 public class CurrencyExchangeRateController
 {
@@ -18,7 +19,7 @@ public class CurrencyExchangeRateController
         _currencyExchangeRateService = currencyExchangeRateService;
     }
     
-    [Authorize(Roles = "user,admin")]
+    
     [HttpGet("currencies")]
     public async Task<IEnumerable<CurrencyDto>> GetCurrenciesAsync(
         [FromQuery] int pageIndex,
@@ -32,14 +33,12 @@ public class CurrencyExchangeRateController
         }, cancellationToken);
     }
     
-    [Authorize(Roles = "user, admin")]
     [HttpGet("currency")]
     public async Task<ActionResult<CurrencyDto>> GetCurrencyById([FromQuery] string currencyId, CancellationToken cancellationToken)
     {
         return await _currencyExchangeRateService.GetCurrencyAsync(currencyId, cancellationToken);
     }
-
-    [Authorize(Roles = "user, admin")]
+    
     [HttpGet("totalCount")]
     public async Task<int> GetCurrencyTotalCountAsync(CancellationToken cancellationToken)
     {

@@ -1,5 +1,3 @@
-using CurrencyExchangeRate.Domain.Repositories.Interfaces;
-using CurrencyExchangeRate.Infrastructure.Repositories.Common;
 using CurrencyExchangeRate.WebApi.Core;
 using CurrencyExchangeRate.WebApi.Infrastructure.Extensions;
 using CurrencyExchangeRate.WebApi.Mappings;
@@ -22,11 +20,8 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddControllers().AddNewtonsoftJson();
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<ICurrencyExchangeRateService, CurrencyExchangeRateService>();
-builder.Services.AddScoped<ICurrencyExchangeRateRepository, CurrencyExchangeRateRepository>();
-builder.Services.AddAutoMapper(typeof(CurrencyExchangeRateProfile));
-builder.Services.AddAutoMapper(typeof(PagingDtoProfile));
-builder.Services.AddAutoMapper(typeof(CurrencyDtoProfile));
 builder.Services.AddDb(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

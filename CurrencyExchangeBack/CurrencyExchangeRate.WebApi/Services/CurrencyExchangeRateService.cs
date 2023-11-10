@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CurrencyExchangeRate.Domain.Repositories.Interfaces;
+using CurrencyExchangeRate.Domain.Repositories;
 using CurrencyExchangeRate.Infrastructure;
 using CurrencyExchangeRate.WebApi.Dto;
 using CurrencyExchangeRate.WebApi.Infrastructure.Dto;

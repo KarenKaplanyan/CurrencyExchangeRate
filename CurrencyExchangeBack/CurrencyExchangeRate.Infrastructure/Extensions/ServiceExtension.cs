@@ -1,4 +1,6 @@
-﻿using CurrencyExchangeRate.Infrastructure.Contexts;
+﻿using CurrencyExchangeRate.Domain.Repositories;
+using CurrencyExchangeRate.Infrastructure.Contexts;
+using CurrencyExchangeRate.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +16,7 @@ public static class ServiceExtension
         var connectionString = configuration.GetConnectionString("CurrencyExchangeRateDatabase");
         services.AddDbContext<CurrencyDbContext>(options =>
             options.UseMySQL(connectionString));
+        services.AddScoped<ICurrencyExchangeRateRepository, CurrencyExchangeRateRepository>();
         return services;
     }
 }

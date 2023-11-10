@@ -1,6 +1,5 @@
 using CurrencyExchangeRate.WebApi.Core;
-using CurrencyExchangeRate.WebApi.Infrastructure.Extensions;
-using CurrencyExchangeRate.WebApi.Mappings;
+using CurrencyExchangeRate.Infrastructure.Extensions;
 using CurrencyExchangeRate.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;

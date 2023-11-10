@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CurrencyExchangeRate.WebApi.Infrastructure.Extensions;
+namespace CurrencyExchangeRate.Infrastructure.Extensions;
 
 public static class ServiceExtension
 {

@@ -1,5 +1,5 @@
 ﻿using CurrencyExchangeRate.MainApp.Services;
-using CurrencyExchangeRate.WebApi.Infrastructure.Extensions;
+using CurrencyExchangeRate.Infrastructure.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

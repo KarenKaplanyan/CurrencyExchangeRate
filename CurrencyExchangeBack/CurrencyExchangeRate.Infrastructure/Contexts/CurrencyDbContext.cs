@@ -6,7 +6,7 @@ namespace CurrencyExchangeRate.Infrastructure.Contexts;
 public class CurrencyDbContext: DbContext
 {
     public DbSet<Currency> Currencies { get; set; }
-    
+
     public CurrencyDbContext(DbContextOptions<CurrencyDbContext> options): base(options)
     {
         
